@@ -14,6 +14,7 @@ typedef struct Node
 }node;
 node* root = NULL;
 
+void insertvalues();
 node* insert(node* parent,int value);
 void inorder(node* parent);
 void preorder(node* parent);
@@ -28,48 +29,63 @@ int main()
 {
 int choice = 0;
 int value;
-    while(choice != 6)
+    while(choice != 7)
     {
         printf("\n--------MENU--------\n");
-        printf("1.insert\n");
-        printf("2.inorder display\n");
-        printf("3.preorder display\n");
-        printf("4.postorder display\n");
-        printf("5.search\n");
-        printf("6.exit\n");
+        printf("1.insert multiple values\n");
+        printf("2.insert\n");
+        printf("3.inorder display\n");
+        printf("4.preorder display\n");
+        printf("5.postorder display\n");
+        printf("6.search\n");
+        printf("7.exit\n");
         printf("---------------------\n\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);
 
         switch(choice)
         {
-            case 1: value = inputvalue();
+            case 1: insertvalues();
+                    break;
+            case 2: value = inputvalue();
                     root = insert(root,value);
                     break;
 
-            case 2: printf("\ninorder: ");
+            case 3: printf("\ninorder: ");
                     inorder(root);
                     printf("\n");
                     break;
 
-            case 3: printf("\npreorder: ");
+            case 4: printf("\npreorder: ");
                     preorder(root);
                     printf("\n");
                     break;
 
-            case 4: printf("\npostorder: ");
+            case 5: printf("\npostorder: ");
                     postorder(root);
                     printf("\n");
                     break;
 
-            case 5: value = inputvalue();
+            case 6: value = inputvalue();
                     search(root, value);
                     break;
-            case 6: return exitcode();
+            case 7: return exitcode();
             default: printf("enter a valid choice!");
         }
     }
     
+}
+
+void insertvalues()
+{
+    int n;
+    printf("enter the number of values to insert: ");
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++)
+    {
+        int value = inputvalue();
+        root = insert(root, value);
+    }
 }
 
 node* insert(node* parent,int value)
